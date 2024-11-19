@@ -28,6 +28,7 @@ function Protected({ children }) {
           }}
           style={{
             width: "5%",
+            backgroundColor: "#f44336",
           }}
         >
           Sair

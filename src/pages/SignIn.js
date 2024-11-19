@@ -47,28 +47,48 @@ function SignIn() {
   }
 
   return (
-    <form onSubmit={handleSubmit(handleLogin)}>
-      {isSuccess && <Navigate to="/" replace={true} />}
-      <div>
-        <input id="email" placeholder="E-mail" {...register("email")} />
-        {errors.email && <span>{errors.email.message}</span>}
-      </div>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      <form
+        onSubmit={handleSubmit(handleLogin)}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <h3 style={{ textAlign: "center", marginTop: "40%" }}>Login</h3>
+        {isSuccess && <Navigate to="/" replace={true} />}
+        <div>
+          <input id="email" placeholder="E-mail" {...register("email")} />
+          {errors.email && <span>{errors.email.message}</span>}
+        </div>
 
-      <div>
-        <input
-          id="password"
-          type="password"
-          placeholder="Senha"
-          {...register("password")}
-        />
-        {errors.password && <span>{errors.password.message}</span>}
-      </div>
+        <div>
+          <input
+            id="password"
+            type="password"
+            placeholder="Senha"
+            {...register("password")}
+          />
+          {errors.password && <span>{errors.password.message}</span>}
+        </div>
 
-      {errors.root && <span>{errors.root.message}</span>}
-      <button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Carregando..." : "Entrar"}
-      </button>
-    </form>
+        {errors.root && <span>{errors.root.message}</span>}
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          style={{ backgroundColor: "#4CAF50", width: "60%" }}
+        >
+          {isSubmitting ? "Carregando..." : "Entrar"}
+        </button>
+      </form>
+    </div>
   );
 }
 
