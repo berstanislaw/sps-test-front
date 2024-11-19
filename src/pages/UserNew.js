@@ -28,31 +28,80 @@ function UserNew() {
 
   return (
     <Protected>
-      <h3>Novo Usuário</h3>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          padding: "50px",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            width: "300px",
+          }}
+        >
+          <h3>Novo Usuário</h3>
+          <Link to="/users">Voltar</Link>
+        </div>
+        <h3>Novo Usuário</h3>
 
-      <div>
-        <form onSubmit={handleSubmit(createUser)}>
-          <label>Nome:</label>
-          <input type="text" {...register("name")} />
-          <br />
-          <label>Email:</label>
-          <input type="text" {...register("email")} />
-          <br />
-          <label>Senha:</label>
-          <input type="password" {...register("password")} />
-          <br />
-          <label>Tipo:</label>
-          <select {...register("type")}>
-            <option value="admin">Admin</option>
-            <option value="user">Usuario</option>
-          </select>
-          <br />
-          <button type="submit" style={{ backgroundColor: "#4CAF50" }}>
-            Salvar
-          </button>
-        </form>
+        <div>
+          <form
+            onSubmit={handleSubmit(createUser)}
+            style={{
+              width: "300px",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <label style={{ width: "20%" }}>Nome:</label>
+              <input
+                type="text"
+                {...register("name")}
+                style={{ width: "80%" }}
+              />
+            </div>
 
-        <Link to="/users">Voltar</Link>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <label style={{ width: "20%" }}>Email:</label>
+              <input
+                type="text"
+                {...register("email")}
+                style={{ width: "80%" }}
+              />
+            </div>
+
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <label style={{ width: "20%" }}>Senha:</label>
+              <input
+                type="password"
+                {...register("password")}
+                style={{ width: "80%" }}
+              />
+            </div>
+
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <label style={{ width: "20%" }}>Tipo:</label>
+              <select {...register("type")} style={{ width: "80%" }}>
+                <option value="admin">Admin</option>
+                <option value="user">Usuario</option>
+              </select>
+            </div>
+
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <button
+                type="submit"
+                style={{ backgroundColor: "#4CAF50", width: "60%" }}
+              >
+                Salvar
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </Protected>
   );
