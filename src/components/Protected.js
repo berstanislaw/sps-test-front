@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 function Protected({ children }) {
   const session = window.sessionStorage.getItem("session");
@@ -7,14 +7,32 @@ function Protected({ children }) {
   return (
     <div>
       {!session && <Navigate to="/signin" replace={true} />}
-      <button
-        onClick={() => {
-          window.sessionStorage.removeItem("session");
-          window.location.reload();
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          padding: "10px",
         }}
       >
-        Logout
-      </button>
+        <div
+          style={{ width: "95%", display: "flex", justifyContent: "center" }}
+        >
+          <Link to="/">
+            <h2>Home</h2>
+          </Link>
+        </div>
+        <button
+          onClick={() => {
+            window.sessionStorage.removeItem("session");
+            window.location.reload();
+          }}
+          style={{
+            width: "5%",
+          }}
+        >
+          Sair
+        </button>
+      </div>
       {children}
     </div>
   );
