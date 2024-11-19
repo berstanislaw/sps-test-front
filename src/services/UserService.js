@@ -32,7 +32,11 @@ const create = async (data) => {
 };
 
 const deleteUser = async (id) => {
-  throw new Error("Not implemented");
+  return await axios.delete(`${process.env.REACT_APP_SERVER_URL}/users/${id}`, {
+    headers: {
+      Authorization: `Bearer ${window.sessionStorage.getItem("session")}`,
+    },
+  });
 };
 
 const update = async (id, data) => {
