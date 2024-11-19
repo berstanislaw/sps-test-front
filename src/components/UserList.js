@@ -49,8 +49,15 @@ function UserList({ users, isLoading }) {
         contentLabel="Example Modal"
       >
         <div>Tem certeza que quer deletar o usuario {user.name}</div>
-        <button onClick={() => mutate(user.id)}>Deletar</button>
-        <button onClick={closeModal}>Cancelar</button>
+        <button
+          onClick={() => mutate(user.id)}
+          style={{ backgroundColor: "#f44336" }}
+        >
+          Deletar
+        </button>
+        <button onClick={closeModal} style={{ backgroundColor: "#8888" }}>
+          Cancelar
+        </button>
       </Modal>
 
       <tr>
@@ -73,6 +80,7 @@ function UserList({ users, isLoading }) {
                 setUser(user);
                 openModal();
               }}
+              style={{ backgroundColor: "#f44336" }}
             >
               Deletar
             </button>

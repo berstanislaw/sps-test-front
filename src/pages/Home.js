@@ -4,9 +4,18 @@ import Protected from "../components/Protected";
 function Home() {
   return (
     <Protected>
-      <h1>SPS REACT TEST</h1>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          paddingLeft: "30px",
+        }}
+      >
+        <h1>SPS REACT TEST</h1>
 
-      <a href="/users">Usuários</a>
+        <a href="/users">Usuários</a>
+      </div>
     </Protected>
   );
 }

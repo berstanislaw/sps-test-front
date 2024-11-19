@@ -47,7 +47,9 @@ function UserNew() {
             <option value="user">Usuario</option>
           </select>
           <br />
-          <button type="submit">Salvar</button>
+          <button type="submit" style={{ backgroundColor: "#4CAF50" }}>
+            Salvar
+          </button>
         </form>
 
         <Link to="/users">Voltar</Link>

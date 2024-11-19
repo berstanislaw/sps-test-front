@@ -14,10 +14,37 @@ function Users() {
 
   return (
     <Protected>
-      <h1> Usuários</h1>
-      <Link to="/users/new">Novo Usuário</Link>
-      <div>Lista de usuários</div>
-      <UserList users={data?.data.users} isLoading={data?.isLoading} />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          textAlign: "center",
+        }}
+      >
+        <h1> Usuários</h1>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              width: "800px",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-around",
+            }}
+          >
+            <h3>Lista de usuários</h3>
+            <Link to="/users/new">Novo Usuário</Link>
+          </div>
+          <UserList users={data?.data.users} isLoading={data?.isLoading} />
+        </div>
+      </div>
     </Protected>
   );
 }
