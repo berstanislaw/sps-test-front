@@ -28,7 +28,7 @@ function UserNew() {
 
   return (
     <Protected>
-      <p>Edição de Usuário</p>
+      <h3>Novo Usuário</h3>
 
       <div>
         <form onSubmit={handleSubmit(createUser)}>
