@@ -8,8 +8,15 @@ const list = async () => {
   });
 };
 
-const get = async (id) => {
-  throw new Error("Not implemented");
+const get = async ({ params }) => {
+  return await axios.get(
+    `${process.env.REACT_APP_SERVER_URL}/users/${params.userId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${window.sessionStorage.getItem("session")}`,
+      },
+    }
+  );
 };
 
 const create = async (data) => {
@@ -21,7 +28,15 @@ const deleteUser = async (id) => {
 };
 
 const update = async (id, data) => {
-  throw new Error("Not implemented");
+  return await axios.put(
+    `${process.env.REACT_APP_SERVER_URL}/users/${id}`,
+    { ...data },
+    {
+      headers: {
+        Authorization: `Bearer ${window.sessionStorage.getItem("session")}`,
+      },
+    }
+  );
 };
 
 const UserService = { list, get, create, deleteUser, update };

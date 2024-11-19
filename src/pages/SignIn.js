@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Navigate, redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { z } from "zod";
 
 function SignIn() {

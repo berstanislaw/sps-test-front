@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function UserList({ users, isLoading }) {
   if (isLoading) {
@@ -22,13 +22,7 @@ function UserList({ users, isLoading }) {
           <td>{user.email}</td>
           <td>{user.type}</td>
           <td>
-            <button
-              onClick={() => {
-                window.location.href = `/users/${user.id}`;
-              }}
-            >
-              Editar
-            </button>
+            <Link to={`/users/${user.id}`}>Editar</Link>
             <button
               onClick={() => {
                 window.location.href = `/users/${user.id}/delete`;

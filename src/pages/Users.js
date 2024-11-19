@@ -11,8 +11,6 @@ function Users() {
     queryFn: UserService.list,
   });
 
-  console.log(data);
-
   return (
     <Protected>
       <h1> Usuários</h1>
