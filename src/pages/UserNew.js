@@ -1,30 +1,20 @@
 import React from "react";
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Protected from "../components/Protected";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import UserService from "../services/UserService";
 
-function EditUser() {
-  const { userId } = useParams();
-  const { data } = useLoaderData();
-
-  const { register, handleSubmit } = useForm({
-    defaultValues: {
-      name: data.user.name,
-      email: data.user.email,
-      password: data.user.password,
-      type: data.user.type,
-    },
-  });
+function UserNew() {
+  const { register, handleSubmit } = useForm({});
 
   const { mutate } = useMutation({
     mutationFn: async (userData) => {
-      UserService.update(userId, userData);
+      UserService.create(userData);
     },
   });
 
-  async function updateUser(userData) {
+  async function createUser(userData) {
     try {
       await mutate(userData, {
         onSuccess: async () => {
@@ -41,7 +31,7 @@ function EditUser() {
       <p>Edição de Usuário</p>
 
       <div>
-        <form onSubmit={handleSubmit(updateUser)}>
+        <form onSubmit={handleSubmit(createUser)}>
           <label>Nome:</label>
           <input type="text" {...register("name")} />
           <br />
@@ -66,4 +56,4 @@ function EditUser() {
   );
 }
 
-export default EditUser;
+export default UserNew;

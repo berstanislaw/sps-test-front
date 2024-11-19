@@ -20,7 +20,15 @@ const get = async ({ params }) => {
 };
 
 const create = async (data) => {
-  throw new Error("Not implemented");
+  return await axios.post(
+    `${process.env.REACT_APP_SERVER_URL}/users`,
+    { ...data },
+    {
+      headers: {
+        Authorization: `Bearer ${window.sessionStorage.getItem("session")}`,
+      },
+    }
+  );
 };
 
 const deleteUser = async (id) => {
