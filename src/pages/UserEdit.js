@@ -1,5 +1,6 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import Protected from "../components/Protected";
 
 export function userLoader({ params }) {
   const user = {
@@ -15,7 +16,7 @@ function EditUser() {
   const { user } = useLoaderData();
 
   return (
-    <div>
+    <Protected>
       <p>Edição de Usuário</p>
       <div>
         <form>
@@ -26,7 +27,7 @@ function EditUser() {
           <button type="submit">Salvar</button>
         </form>
       </div>
-    </div>
+    </Protected>
   );
 }
 
