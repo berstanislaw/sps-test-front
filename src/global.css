@@ -7,8 +7,13 @@ input,
 td,
 tr,
 th,
-label {
+label,
+span {
   font-family: Arial, Helvetica, sans-serif;
+}
+
+span {
+  color: #f44336;
 }
 
 input {

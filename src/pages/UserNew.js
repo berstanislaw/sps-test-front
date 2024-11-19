@@ -4,9 +4,24 @@ import Protected from "../components/Protected";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import UserService from "../services/UserService";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+let createUserSchema = z.object({
+  email: z.string().email({ message: "Insira um e-mail valido" }).trim(),
+  name: z.string().trim(),
+  password: z.string().trim(),
+  type: z.enum(["admin", "user"]),
+});
 
 function UserNew() {
-  const { register, handleSubmit } = useForm({});
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(createUserSchema),
+  });
 
   const { mutate } = useMutation({
     mutationFn: async (userData) => {
@@ -64,6 +79,7 @@ function UserNew() {
                 {...register("name")}
                 style={{ width: "80%" }}
               />
+              {errors.name && <span>{errors.name.message}</span>}
             </div>
 
             <div style={{ display: "flex", alignItems: "center" }}>
@@ -73,6 +89,7 @@ function UserNew() {
                 {...register("email")}
                 style={{ width: "80%" }}
               />
+              {errors.email && <span>{errors.email.message}</span>}
             </div>
 
             <div style={{ display: "flex", alignItems: "center" }}>
@@ -82,6 +99,7 @@ function UserNew() {
                 {...register("password")}
                 style={{ width: "80%" }}
               />
+              {errors.password && <span>{errors.password.message}</span>}
             </div>
 
             <div style={{ display: "flex", alignItems: "center" }}>

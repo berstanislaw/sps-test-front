@@ -4,12 +4,30 @@ import Protected from "../components/Protected";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import UserService from "../services/UserService";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 function EditUser() {
   const { userId } = useParams();
   const { data } = useLoaderData();
 
-  const { register, handleSubmit } = useForm({
+  let updateUserSchema = z.object({
+    email: z
+      .string()
+      .email({ message: "Insira um e-mail valido" })
+      .trim()
+      .optional(),
+    name: z.string().trim().optional(),
+    password: z.string().trim().optional(),
+    type: z.enum(["admin", "user"]).optional(),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(updateUserSchema),
     defaultValues: {
       name: data.user.name,
       email: data.user.email,
@@ -73,6 +91,7 @@ function EditUser() {
                 {...register("name")}
                 style={{ width: "80%" }}
               />
+              {errors.name && <span>{errors.name.message}</span>}
             </div>
 
             <div style={{ display: "flex", alignItems: "center" }}>
@@ -82,6 +101,7 @@ function EditUser() {
                 {...register("email")}
                 style={{ width: "80%" }}
               />
+              {errors.email && <span>{errors.email.message}</span>}
             </div>
 
             <div style={{ display: "flex", alignItems: "center" }}>
@@ -91,6 +111,7 @@ function EditUser() {
                 {...register("password")}
                 style={{ width: "80%" }}
               />
+              {errors.password && <span>{errors.password.message}</span>}
             </div>
 
             <div style={{ display: "flex", alignItems: "center" }}>
